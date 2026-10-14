@@ -1,30 +1,31 @@
 package org.example;
 
+import org.example.model.Book;
 import org.example.model.Person;
 import org.example.model.Samples;
 
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class BooksDistributor {
 
-    public void distributeBooksThroughPeople(){
+    public void distributeBooksThroughPeople() {
+        List<Person> people = new ArrayList<>(Samples.getSampleListOfPeople());
+        Collections.shuffle(people);
 
-        for (Person person: Samples.getSampleListOfPeople())
-        {
-            int index = getRandomIndex();
-            person.getBooks().add(Samples.getAvailableBooks().get(index));
+        List<Book> availableBooks = Samples.getAvailableBooks();
+        for (int i = 0; i < availableBooks.size(); i++) {
+            Book book = availableBooks.get(i);
+            Person person = people.get(i);
+
+            person.getBooks().add(book);
+            book.setOwner(person);
         }
 
+        availableBooks.clear();
     }
-    private int getRandomIndex(){
-        return new Random().nextInt(Samples.getAvailableBooks().size()+5);
-    }
-
-
 }
-
-
-
 
 
 

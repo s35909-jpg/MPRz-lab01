@@ -11,16 +11,17 @@ import java.util.Map;
 
 public class PeopleAggregator {
 
-    public Map<Gender, List<Person>> aggregatePeopleByGender(){
-        List<Person> newListOfPeople = new ArrayList<>();
+    public Map<Gender, List<Person>> aggregatePeopleByGender() {
         Map<Gender, List<Person>> aggregatedByGender = new HashMap<>();
-        aggregatedByGender.put(Gender.FEMALE, newListOfPeople);
-        aggregatedByGender.put(Gender.MALE, newListOfPeople);
+        aggregatedByGender.put(Gender.FEMALE, new ArrayList<>());
+        aggregatedByGender.put(Gender.MALE, new ArrayList<>());
+
         for (Person person : Samples.getSampleListOfPeople()) {
-            if (person.getGender() == Gender.MALE)
+            if (person.getGender() == Gender.MALE) {
                 aggregatedByGender.get(Gender.MALE).add(person);
-            if(person.getGender() == Gender.FEMALE)
+            } else if (person.getGender() == Gender.FEMALE) {
                 aggregatedByGender.get(Gender.FEMALE).add(person);
+            }
         }
         return aggregatedByGender;
     }

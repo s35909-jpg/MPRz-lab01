@@ -3,15 +3,13 @@ package org.example;
 import org.example.model.Person;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-@SuppressWarnings("ALL")
 public class PeopleCleaner {
 
-    public List<Person> getPeopleWithBooksOnly(List<Person> people){
-        for (Person person : people) {
-            if (person.getBooks().isEmpty())
-                people.remove(person);
-        }
-        return people;
+    public List<Person> getPeopleWithBooksOnly(List<Person> people) {
+        return people.stream()
+                .filter(person -> !person.getBooks().isEmpty())
+                .collect(Collectors.toList());
     }
 }

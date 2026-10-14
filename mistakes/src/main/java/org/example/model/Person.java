@@ -1,5 +1,6 @@
 package org.example.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Person {
@@ -7,7 +8,7 @@ public class Person {
     private String name;
     private String surname;
     private Gender gender;
-    private List<Book> books;
+    private List<Book> books = new ArrayList<>();
 
     public Person(String name, String surname, Gender gender) {
         this.name = name;
@@ -42,5 +43,4 @@ public class Person {
     public List<Book> getBooks() {
         return books;
     }
-
 }
